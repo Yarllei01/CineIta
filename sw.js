@@ -1,11 +1,13 @@
-const CACHE_NAME = 'cineita-v1';
+const CACHE_NAME = 'cineita-v2';
 const ASSETS = [
     './',
     './index.html',
     './css/style.css',
     './js/app.js',
-    './filmes.json',
-    './manifest.json'
+    './manifest.json',
+    './assets/icon-192.png',
+    './assets/icon-512.png',
+    './assets/poster-fallback.jpg'
 ];
 
 self.addEventListener('install', event => {
@@ -16,8 +18,20 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
-    event.respondWith(
-        caches.match(event.request)
-            .then(response => response || fetch(event.request))
-    );
+    if (event.request.url.includes('filmes.json')) {
+        event.respondWith(
+            fetch(event.request)
+                .then(response => {
+                    const clone = response.clone();
+                    caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+                    return response;
+                })
+                .catch(() => caches.match(event.request))
+        );
+    } else {
+        event.respondWith(
+            caches.match(event.request)
+                .then(response => response || fetch(event.request))
+        );
+    }
 });

@@ -2,36 +2,52 @@
   "emCartaz": {
     "28/03": [
       {
-        "titulo": "Oppenheimer",
-        "duracao": "3h 00m",
-        "genero": "Drama / Histórico",
-        "formato": "Legendado 2D",
-        "classificacao": "16 Anos",
-        "imagem": "https://via.placeholder.com/80x120",
-        "horarios": "18:00, 21:30"
+        "titulo": "CASAMENTO SANGRENTO: A VIÚVA",
+        "duracao": "01h44",
+        "genero": "DUB | 2D",
+        "formato": "DUB | 2D",
+        "classificacao": "16",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/3c901247-2b05-4d2e-950b-8554c7a6700f.jpg",
+        "horarios": "21:15"
       },
       {
-        "titulo": "Duna: Parte Dois",
-        "duracao": "2h 46m",
-        "genero": "Ficção Científica",
-        "formato": "Dublado 3D",
-        "classificacao": "14 Anos",
-        "imagem": "https://via.placeholder.com/80x120",
-        "horarios": "15:00, 19:15"
-      }
-    ],
-    "29/03": [
+        "titulo": "ELES VÃO TE MATAR",
+        "duracao": "01h30",
+        "genero": "DUB | 2D",
+        "formato": "DUB | 2D",
+        "classificacao": "16",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/8287579b-7161-4525-9120-01e83a0498f0.jpg",
+        "horarios": "16:00, 19:30, 21:30"
+      },
       {
-        "titulo": "Duna: Parte Dois",
-        "duracao": "2h 46m",
-        "genero": "Ficção Científica",
-        "formato": "Dublado 3D",
-        "classificacao": "14 Anos",
-        "imagem": "https://via.placeholder.com/80x120",
-        "horarios": "14:00, 17:30, 21:00"
+        "titulo": "CARA DE UM, FOCINHO DE OUTRO",
+        "duracao": "01h45",
+        "genero": "DUB | 2D",
+        "formato": "DUB | 3D",
+        "classificacao": "10",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/dea32b25-89b6-47dd-874f-b39ecfd8ff1c.jpg",
+        "horarios": "15:30, 17:30"
+      },
+      {
+        "titulo": "DEVORADORES DE ESTRELAS",
+        "duracao": "02h40",
+        "genero": "DUB | 2D",
+        "formato": "DUB | 2D",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/7fb77a8d-ccab-4de4-8c71-8db4bbc156eb.jpg",
+        "horarios": "18:00, 21:00"
+      },
+      {
+        "titulo": "UMA SEGUNDA CHANCE",
+        "duracao": "01h54",
+        "genero": "DUB | 2D",
+        "formato": "DUB | 2D",
+        "classificacao": "12",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/a72d47bb-4086-4423-aefa-331754165f8e.jpg",
+        "horarios": "19:00"
       }
     ]
   },
   "emBreve": [],
-  "ultimaAtualizacao": "28/03/2026 08:00"
+  "ultimaAtualizacao": "28/03/2026, 17:27:38"
 }
