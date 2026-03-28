@@ -1,0 +1,37 @@
+{
+  "emCartaz": {
+    "28/03": [
+      {
+        "titulo": "Oppenheimer",
+        "duracao": "3h 00m",
+        "genero": "Drama / Histórico",
+        "formato": "Legendado 2D",
+        "classificacao": "16 Anos",
+        "imagem": "https://via.placeholder.com/80x120",
+        "horarios": "18:00, 21:30"
+      },
+      {
+        "titulo": "Duna: Parte Dois",
+        "duracao": "2h 46m",
+        "genero": "Ficção Científica",
+        "formato": "Dublado 3D",
+        "classificacao": "14 Anos",
+        "imagem": "https://via.placeholder.com/80x120",
+        "horarios": "15:00, 19:15"
+      }
+    ],
+    "29/03": [
+      {
+        "titulo": "Duna: Parte Dois",
+        "duracao": "2h 46m",
+        "genero": "Ficção Científica",
+        "formato": "Dublado 3D",
+        "classificacao": "14 Anos",
+        "imagem": "https://via.placeholder.com/80x120",
+        "horarios": "14:00, 17:30, 21:00"
+      }
+    ]
+  },
+  "emBreve": [],
+  "ultimaAtualizacao": "28/03/2026 08:00"
+}

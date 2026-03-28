@@ -1,0 +1,181 @@
+/* Reseta margens e define o modo escuro como padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+    padding-bottom: 80px; /* Espaço para o botão flutuante */
+}
+
+/* Cabeçalho e Abas */
+header {
+    background-color: #1f1f1f;
+    padding: 20px 15px 0;
+    text-align: center;
+    border-bottom: 1px solid #333;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #e50914; /* Vermelho estilo cinema */
+}
+
+.abas {
+    display: flex;
+    justify-content: space-around;
+}
+
+.aba {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.aba.ativa {
+    color: #ffffff;
+    border-bottom: 3px solid #e50914;
+    font-weight: bold;
+}
+
+/* Seletor de Datas Horizontal */
+.seletor-datas {
+    display: flex;
+    overflow-x: auto;
+    padding: 15px;
+    gap: 10px;
+    background-color: #1a1a1a;
+}
+
+/* Esconde a barra de rolagem no seletor */
+.seletor-datas::-webkit-scrollbar {
+    display: none;
+}
+
+.btn-data {
+    background-color: #333;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-data.ativo {
+    background-color: #e50914;
+    font-weight: bold;
+}
+
+/* Lista de Filmes e Cards */
+.lista-filmes {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.filme-card {
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    display: flex;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.filme-poster {
+    width: 80px;
+    height: 120px;
+    border-radius: 6px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.filme-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.filme-info h2 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.detalhes {
+    font-size: 0.8rem;
+    color: #bbb;
+    margin-bottom: 8px;
+}
+
+.formato-classificacao {
+    margin-bottom: 10px;
+}
+
+.tag-formato, .tag-classificacao {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+    border-radius: 4px;
+    margin-right: 5px;
+    background-color: #333;
+}
+
+.tag-classificacao {
+    background-color: #ff9800; /* Laranja para destaque */
+    color: #000;
+    font-weight: bold;
+}
+
+/* Horários das Sessões */
+.horarios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.horario-badge {
+    background-color: #e50914;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* Botão Flutuante do WhatsApp */
+.btn-compartilhar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #25D366; /* Verde Oficial do WhatsApp */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
+    cursor: pointer;
+    width: 90%;
+    max-width: 350px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.8rem;
+    color: #666;
+}
