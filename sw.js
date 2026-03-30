@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cineita-v4';
+const CACHE_NAME = 'cineita-v5';
 
 const urlsToCache = [
     '/',
