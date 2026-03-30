@@ -2,10 +2,10 @@ name: Atualizar Grade CineIta
 
 on:
   schedule:
-    - cron: '5 11 * * *'    # Diariamente às 08:05 BRT
-    - cron: '10 11 * * 4'   # Quinta-feira às 08:10 BRT
-    - cron: '5 14 * * 4'    # Quinta-feira às 11:05 BRT
-  workflow_dispatch:        # Permite rodar manualmente pelo botão no GitHub
+    - cron: '5 11 * * *'
+    - cron: '10 11 * * 4'
+    - cron: '5 14 * * 4'
+  workflow_dispatch:
 
 jobs:
   raspar_dados:
@@ -21,7 +21,7 @@ jobs:
           node-version: '20'
 
       - name: Instalar dependências
-        run: npm install
+        run: npm install puppeteer
 
       - name: Instalar bibliotecas do navegador
         run: sudo apt-get install -y libxss1 libasound2 libnss3 libatk-bridge2.0-0 libgtk-3-0 libgbm-dev
