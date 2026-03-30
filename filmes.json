@@ -166,9 +166,35 @@
     ],
     "31/03": [
       {
-        "titulo": "ELES VÃO TE MATAR",
+        "titulo": "Título Indisponível",
+        "duracao": "01h45",
+        "genero": "DEVORADORES DE ESTRELAS",
+        "classificacao": "10",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/dea32b25-89b6-47dd-874f-b39ecfd8ff1c.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 3D",
+            "horarios": "16:30"
+          }
+        ]
+      },
+      {
+        "titulo": "Título Indisponível",
+        "duracao": "02h40",
+        "genero": "ELES VÃO TE MATAR",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/7fb77a8d-ccab-4de4-8c71-8db4bbc156eb.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "19:30"
+          }
+        ]
+      },
+      {
+        "titulo": "Título Indisponível",
         "duracao": "01h30",
-        "genero": "Comédia",
+        "genero": "UMA SEGUNDA CHANCE",
         "classificacao": "16",
         "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/8287579b-7161-4525-9120-01e83a0498f0.jpg",
         "sessoes": [
@@ -183,35 +209,22 @@
         ]
       },
       {
-        "titulo": "CARA DE UM, FOCINHO DE OUTRO",
-        "duracao": "01h45",
-        "genero": "Animação",
-        "classificacao": "10",
-        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/dea32b25-89b6-47dd-874f-b39ecfd8ff1c.jpg",
-        "sessoes": [
-          {
-            "formato": "DUB | 3D",
-            "horarios": "16:30"
-          }
-        ]
-      },
-      {
-        "titulo": "DEVORADORES DE ESTRELAS",
-        "duracao": "02h40",
-        "genero": "Aventura",
-        "classificacao": "14",
-        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/7fb77a8d-ccab-4de4-8c71-8db4bbc156eb.jpg",
+        "titulo": "Título Indisponível",
+        "duracao": "01h54",
+        "genero": "CASAMENTO SANGRENTO: A VIÚVA",
+        "classificacao": "12",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/a72d47bb-4086-4423-aefa-331754165f8e.jpg",
         "sessoes": [
           {
             "formato": "DUB | 2D",
-            "horarios": "19:30"
+            "horarios": "18:30, 20:45"
           }
         ]
       },
       {
-        "titulo": "CASAMENTO SANGRENTO: A VIÚVA",
+        "titulo": "Título Indisponível",
         "duracao": "01h44",
-        "genero": "Terror",
+        "genero": "VELHOS BANDIDOS",
         "classificacao": "16",
         "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/3c901247-2b05-4d2e-950b-8554c7a6700f.jpg",
         "sessoes": [
@@ -222,9 +235,9 @@
         ]
       },
       {
-        "titulo": "VELHOS BANDIDOS",
+        "titulo": "Título Indisponível",
         "duracao": "01h34",
-        "genero": "Ação",
+        "genero": "Indefinido",
         "classificacao": "14",
         "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/ebe84618-e8a1-4795-b30c-ecee65fc29ec.jpg",
         "sessoes": [
@@ -233,26 +246,39 @@
             "horarios": "17:15, 19:15"
           }
         ]
-      },
-      {
-        "titulo": "UMA SEGUNDA CHANCE",
-        "duracao": "01h54",
-        "genero": "Drama",
-        "classificacao": "12",
-        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/a72d47bb-4086-4423-aefa-331754165f8e.jpg",
-        "sessoes": [
-          {
-            "formato": "DUB | 2D",
-            "horarios": "18:30, 20:45"
-          }
-        ]
       }
     ],
     "01/04": [
       {
-        "titulo": "ELES VÃO TE MATAR",
+        "titulo": "Título Indisponível",
+        "duracao": "01h39",
+        "genero": "DEVORADORES DE ESTRELAS",
+        "classificacao": "L",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/cbb75445-94e0-4d97-8e75-241e761ba3d7.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 3D",
+            "horarios": "16:30, 18:30, 20:30"
+          }
+        ]
+      },
+      {
+        "titulo": "Título Indisponível",
+        "duracao": "02h40",
+        "genero": "ELES VÃO TE MATAR",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/7fb77a8d-ccab-4de4-8c71-8db4bbc156eb.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "19:30"
+          }
+        ]
+      },
+      {
+        "titulo": "Título Indisponível",
         "duracao": "01h30",
-        "genero": "Comédia",
+        "genero": "CASAMENTO SANGRENTO: A VIÚVA",
         "classificacao": "16",
         "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/8287579b-7161-4525-9120-01e83a0498f0.jpg",
         "sessoes": [
@@ -263,22 +289,9 @@
         ]
       },
       {
-        "titulo": "DEVORADORES DE ESTRELAS",
-        "duracao": "02h40",
-        "genero": "Aventura",
-        "classificacao": "14",
-        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/7fb77a8d-ccab-4de4-8c71-8db4bbc156eb.jpg",
-        "sessoes": [
-          {
-            "formato": "DUB | 2D",
-            "horarios": "19:30"
-          }
-        ]
-      },
-      {
-        "titulo": "CASAMENTO SANGRENTO: A VIÚVA",
+        "titulo": "Título Indisponível",
         "duracao": "01h44",
-        "genero": "Terror",
+        "genero": "VELHOS BANDIDOS",
         "classificacao": "16",
         "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/3c901247-2b05-4d2e-950b-8554c7a6700f.jpg",
         "sessoes": [
@@ -289,9 +302,9 @@
         ]
       },
       {
-        "titulo": "VELHOS BANDIDOS",
+        "titulo": "Título Indisponível",
         "duracao": "01h34",
-        "genero": "Ação",
+        "genero": "Indefinido",
         "classificacao": "14",
         "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/ebe84618-e8a1-4795-b30c-ecee65fc29ec.jpg",
         "sessoes": [
@@ -300,78 +313,64 @@
             "horarios": "17:15, 19:15"
           }
         ]
-      },
-      {
-        "titulo": "SUPER MARIO GALAXY: O FILME",
-        "duracao": "01h39",
-        "genero": "Animação",
-        "classificacao": "L",
-        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/cbb75445-94e0-4d97-8e75-241e761ba3d7.jpg",
-        "sessoes": [
-          {
-            "formato": "DUB | 3D",
-            "horarios": "16:30, 18:30"
-          },
-          {
-            "formato": "DUB | 2D",
-            "horarios": "20:30"
-          }
-        ]
       }
     ],
     "02/04": [
       {
-        "titulo": "SUPER MARIO GALAXY: O FILME",
+        "titulo": "Título Indisponível",
         "duracao": "01h39",
-        "genero": "Animação",
+        "genero": "Indefinido",
         "classificacao": "L",
         "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/cbb75445-94e0-4d97-8e75-241e761ba3d7.jpg",
         "sessoes": [
           {
             "formato": "DUB | 3D",
-            "horarios": "16:30, 18:30"
-          },
-          {
-            "formato": "DUB | 2D",
-            "horarios": "20:30"
+            "horarios": "16:30, 18:30, 20:30"
           }
         ]
       }
     ],
     "03/04": [
       {
-        "titulo": "SUPER MARIO GALAXY: O FILME",
+        "titulo": "Título Indisponível",
         "duracao": "01h39",
-        "genero": "Animação",
+        "genero": "Indefinido",
         "classificacao": "L",
         "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/cbb75445-94e0-4d97-8e75-241e761ba3d7.jpg",
         "sessoes": [
           {
             "formato": "DUB | 3D",
-            "horarios": "16:30, 18:30"
-          },
-          {
-            "formato": "DUB | 2D",
-            "horarios": "20:30"
+            "horarios": "16:30, 18:30, 20:30"
           }
         ]
       }
     ],
     "04/04": [
       {
-        "titulo": "SUPER MARIO GALAXY: O FILME",
+        "titulo": "Título Indisponível",
         "duracao": "01h39",
-        "genero": "Animação",
+        "genero": "Indefinido",
         "classificacao": "L",
         "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/cbb75445-94e0-4d97-8e75-241e761ba3d7.jpg",
         "sessoes": [
           {
             "formato": "DUB | 3D",
-            "horarios": "14:30, 18:30"
-          },
+            "horarios": "14:30, 16:30, 18:30, 20:30"
+          }
+        ]
+      }
+    ],
+    "05/04": [
+      {
+        "titulo": "Título Indisponível",
+        "duracao": "01h39",
+        "genero": "Indefinido",
+        "classificacao": "L",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/cbb75445-94e0-4d97-8e75-241e761ba3d7.jpg",
+        "sessoes": [
           {
-            "formato": "DUB | 2D",
-            "horarios": "16:30, 20:30"
+            "formato": "DUB | 3D",
+            "horarios": "14:30, 16:30, 18:30, 20:30"
           }
         ]
       }
