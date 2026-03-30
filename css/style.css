@@ -207,18 +207,17 @@ header h1 .material-symbols-outlined {
     cursor: pointer;
     width: 90%;
     max-width: 350px;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease;
     z-index: 1000;
     text-align: center;
 }
 
 .btn-compartilhar:hover {
     background-color: #179d48;
-    transform: translateX(-50%) scale(1.02);
 }
 
 .btn-compartilhar:active {
-    transform: translateX(-50%) scale(0.95);
+    background-color: #127a36;
 }
 
 footer {
