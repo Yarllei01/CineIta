@@ -18,13 +18,13 @@ jobs:
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Instalar dependências
         run: npm install puppeteer
 
       - name: Instalar bibliotecas do navegador
-        run: sudo apt-get install -y libxss1 libasound2 libnss3 libatk-bridge2.0-0 libgtk-3-0 libgbm-dev
+        run: sudo apt-get update && sudo apt-get install -y libxss1 libasound2t64 libnss3 libatk-bridge2.0-0 libgtk-3-0 libgbm-dev
 
       - name: Executar o robô
         run: node scraper/semana.js
