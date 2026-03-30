@@ -103,7 +103,7 @@ async function rasparDia(page) {
 
 async function executarSemana() {
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
         defaultViewport: null,
         args: ['--no-sandbox', '--disable-setuid-sandbox', '--start-maximized']
     });

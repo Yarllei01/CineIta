@@ -1,0 +1,38 @@
+name: Atualizar Grade CineIta
+
+on:
+  schedule:
+    - cron: '5 11 * * *'    # Diariamente às 08:05 BRT
+    - cron: '10 11 * * 4'   # Quinta-feira às 08:10 BRT
+    - cron: '5 14 * * 4'    # Quinta-feira às 11:05 BRT
+  workflow_dispatch:        # Permite rodar manualmente pelo botão no GitHub
+
+jobs:
+  raspar_dados:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Instalar bibliotecas do navegador
+        run: sudo apt-get install -y libxss1 libasound2 libnss3 libatk-bridge2.0-0 libgtk-3-0 libgbm-dev
+
+      - name: Executar o robô
+        run: node scraper/semana.js
+
+      - name: Salvar o filmes.json
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add filmes.json
+          git commit -m "Atualização automática da programação" || echo "Sem mudanças"
+          git push
