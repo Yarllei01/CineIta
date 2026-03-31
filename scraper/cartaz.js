@@ -19,22 +19,29 @@ const extrairEmCartaz = () => {
         let curr = celula.nextElementSibling;
         
         while (curr && !curr.id.startsWith('movie-')) {
-            const h3 = curr.querySelector('h3');
-            if (h3 && titulo === 'Título Indisponível') titulo = h3.innerText;
+            const headings = curr.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            if (headings.length > 0 && titulo === 'Título Indisponível') {
+                titulo = headings[0].innerText.trim();
+            }
 
-            const h6 = curr.querySelector('h6');
-            if (h6 && genero === 'Indefinido') genero = h6.innerText;
+            const linhas = curr.innerText.split('\n');
+            for (let j = 0; j < linhas.length; j++) {
+                const txt = linhas[j].trim();
+                if (txt.includes('|') && /\d{2}h\d{2}/.test(txt)) {
+                    const partes = txt.split('|');
+                    duracao = partes[0].trim();
+                    genero = partes[1].trim();
+                } else if (/^(L|10|12|14|16|18)$/.test(txt) && classificacao === 'Livre') {
+                    classificacao = txt;
+                }
+            }
 
-            const spans = curr.querySelectorAll('span[translate="no"]');
-            if (spans.length > 0 && classificacao === 'Livre') classificacao = spans[0].innerText;
-            if (spans.length > 1 && duracao === '--h--') duracao = spans[1].innerText;
-
-            const links = curr.querySelectorAll('a');
+            const links = curr.querySelectorAll('a, button');
             for (let j = 0; j < links.length; j++) {
                 const b = links[j];
                 const txt = b.innerText;
                 let formatoStr = 'Padrão';
-                if (txt.includes('|')) {
+                if (txt.includes('|') && !/\d{2}h\d{2}/.test(txt)) {
                     formatoStr = txt.split('\n')[0].trim();
                 }
                 const match = txt.match(/\d{2}:\d{2}/);

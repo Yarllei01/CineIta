@@ -25,24 +25,30 @@ async function rasparDia(page) {
             let curr = celula.nextElementSibling;
             
             while (curr && !curr.id.startsWith('movie-')) {
-                const h3 = curr.querySelector('h3');
-                if (h3 && titulo === 'Título Indisponível') titulo = h3.innerText;
+                const headings = curr.querySelectorAll('h1, h2, h3, h4, h5, h6');
+                if (headings.length > 0 && titulo === 'Título Indisponível') {
+                    titulo = headings[0].innerText.trim();
+                }
 
-                const h6 = curr.querySelector('h6');
-                if (h6 && genero === 'Indefinido') genero = h6.innerText;
+                const linhas = curr.innerText.split('\n');
+                for (let j = 0; j < linhas.length; j++) {
+                    const txt = linhas[j].trim();
+                    if (txt.includes('|') && /\d{2}h\d{2}/.test(txt)) {
+                        const partes = txt.split('|');
+                        duracao = partes[0].trim();
+                        genero = partes[1].trim();
+                    } else if (/^(L|10|12|14|16|18)$/.test(txt) && classificacao === 'Livre') {
+                        classificacao = txt;
+                    }
+                }
 
-                const spans = curr.querySelectorAll('span[translate="no"]');
-                if (spans.length > 0 && classificacao === 'Livre') classificacao = spans[0].innerText;
-                if (spans.length > 1 && duracao === '--h--') duracao = spans[1].innerText;
-
-                const links = curr.querySelectorAll('a');
+                const links = curr.querySelectorAll('a, button');
                 for (let j = 0; j < links.length; j++) {
                     const b = links[j];
                     const txt = b.innerText;
                     let formatoStr = 'Padrão';
-                    let splitTxt = txt.split('\n');
-                    if (txt.includes('|')) {
-                        formatoStr = splitTxt[0].trim();
+                    if (txt.includes('|') && !/\d{2}h\d{2}/.test(txt)) {
+                        formatoStr = txt.split('\n')[0].trim();
                     }
                     const match = txt.match(/\d{2}:\d{2}/);
                     if (match) {
@@ -120,7 +126,7 @@ async function executarSemana() {
         const emCartazSemana = {};
 
         const diasEncontrados = await page.evaluate(() => {
-            const botoes = Array.from(document.querySelectorAll('button'));
+            const botoes = Array.from(document.querySelectorAll('button')).filter(b => b.offsetParent !== null);
             const mesesValidos = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
             const resultados = [];
             
@@ -149,7 +155,7 @@ async function executarSemana() {
                         }
                     }
                     
-                    if (!jaExiste) {
+                    if (!jaExiste && resultados.length < 7) {
                         resultados.push({ 
                             dia: dia, 
                             mes: mesEncontrado 
@@ -166,13 +172,16 @@ async function executarSemana() {
             'SET': '09', 'OUT': '10', 'NOV': '11', 'DEZ': '12'
         };
 
-        for (let i = 1; i < diasEncontrados.length; i++) {
+        for (let i = 0; i < diasEncontrados.length; i++) {
             const alvo = diasEncontrados[i];
             const botoesElemento = await page.$$('button');
             let clicou = false;
             
             for (let b = 0; b < botoesElemento.length; b++) {
                 const btn = botoesElemento[b];
+                const isVisible = await page.evaluate(el => el.offsetParent !== null, btn);
+                if (!isVisible) continue;
+
                 const texto = await page.evaluate(el => (el.innerText || el.textContent || '').toUpperCase(), btn);
                 const matchDia = texto.match(/\b(0?[1-9]|[12][0-9]|3[01])\b/);
                 
@@ -205,20 +214,13 @@ async function executarSemana() {
             try {
                 const rawData = fs.readFileSync(caminhoArquivo);
                 const dadosAntigos = JSON.parse(rawData);
-                if (dadosAntigos.emCartaz) {
-                    dadosAtuais.emCartaz = dadosAntigos.emCartaz;
-                }
                 if (dadosAntigos.ultimaAtualizacao) {
                     dadosAtuais.ultimaAtualizacao = dadosAntigos.ultimaAtualizacao;
                 }
             } catch (e) {}
         }
 
-        const chavesSemana = Object.keys(emCartazSemana);
-        for (let i = 0; i < chavesSemana.length; i++) {
-            const chave = chavesSemana[i];
-            dadosAtuais.emCartaz[chave] = emCartazSemana[chave];
-        }
+        dadosAtuais.emCartaz = emCartazSemana;
         
         fs.writeFileSync(caminhoArquivo, JSON.stringify(dadosAtuais, null, 2));
         

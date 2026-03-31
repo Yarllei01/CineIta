@@ -27,7 +27,14 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libxss1 libasound2t64 libnss3 libatk-bridge2.0-0 libgtk-3-0 libgbm-dev
 
       - name: Executar o robô
-        run: node scraper/semana.js
+        run: |
+          if [ "${{ github.event.schedule }}" == "5 11 * * *" ]; then
+            node scraper/index.js
+          elif [ "${{ github.event.schedule }}" == "10 11 * * 4" ] || [ "${{ github.event.schedule }}" == "5 14 * * 4" ]; then
+            node scraper/semana.js
+          else
+            node scraper/semana.js
+          fi
 
       - name: Salvar o filmes.json
         run: |
