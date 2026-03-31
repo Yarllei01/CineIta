@@ -3,6 +3,20 @@ const fs = require('fs');
 const path = require('path');
 const { autoScroll, selecionarCidade } = require('./utils');
 
+function limparDatasAntigas(emCartaz) {
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    const chaves = Object.keys(emCartaz);
+    for (let i = 0; i < chaves.length; i++) {
+        const partes = chaves[i].split('/');
+        const dataChave = new Date(hoje.getFullYear(), parseInt(partes[1]) - 1, parseInt(partes[0]));
+        if (dataChave < hoje) {
+            delete emCartaz[chaves[i]];
+        }
+    }
+    return emCartaz;
+}
+
 async function rasparDia(page) {
     return await page.evaluate(() => {
         const celulas = document.querySelectorAll('[id^="movie-"]');
@@ -221,6 +235,8 @@ async function executarSemana() {
         }
 
         dadosAtuais.emCartaz = emCartazSemana;
+        dadosAtuais.emCartaz = limparDatasAntigas(dadosAtuais.emCartaz);
+        dadosAtuais.ultimaAtualizacao = new Date().toLocaleString('pt-BR');
         
         fs.writeFileSync(caminhoArquivo, JSON.stringify(dadosAtuais, null, 2));
         

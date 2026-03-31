@@ -4,6 +4,20 @@ const path = require('path');
 const { autoScroll, selecionarCidade } = require('./utils');
 const { extrairEmCartaz } = require('./cartaz');
 
+function limparDatasAntigas(emCartaz) {
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    const chaves = Object.keys(emCartaz);
+    for (let i = 0; i < chaves.length; i++) {
+        const partes = chaves[i].split('/');
+        const dataChave = new Date(hoje.getFullYear(), parseInt(partes[1]) - 1, parseInt(partes[0]));
+        if (dataChave < hoje) {
+            delete emCartaz[chaves[i]];
+        }
+    }
+    return emCartaz;
+}
+
 async function rasparCartaz() {
     const browser = await puppeteer.launch({
         headless: true,
@@ -40,7 +54,12 @@ async function executar() {
 
     try {
         const novosCartaz = await rasparCartaz();
-        dadosAtuais.emCartaz = novosCartaz;
+        const chavesNovas = Object.keys(novosCartaz);
+        for (let i = 0; i < chavesNovas.length; i++) {
+            const chave = chavesNovas[i];
+            dadosAtuais.emCartaz[chave] = novosCartaz[chave];
+        }
+        dadosAtuais.emCartaz = limparDatasAntigas(dadosAtuais.emCartaz);
         dadosAtuais.ultimaAtualizacao = new Date().toLocaleString('pt-BR');
     } catch (e) {}
 
