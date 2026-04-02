@@ -86,7 +86,323 @@
     ],
     "03/04": [
       {
+        "titulo": "CASAMENTO SANGRENTO: A VIÚVA",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "16",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/8287579b-7161-4525-9120-01e83a0498f0.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "16:00, 18:00"
+          }
+        ]
+      },
+      {
+        "titulo": "A ÚLTIMA CEIA",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "16",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/3c901247-2b05-4d2e-950b-8554c7a6700f.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "17:00"
+          }
+        ]
+      },
+      {
+        "titulo": "VELHOS BANDIDOS",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/66186813-be25-4836-85b1-b41ef7ad5fc6.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "19:00"
+          }
+        ]
+      },
+      {
+        "titulo": "SUPER MARIO GALAXY: O FILME",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/ebe84618-e8a1-4795-b30c-ecee65fc29ec.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "15:00"
+          },
+          {
+            "formato": "NAC | 2D",
+            "horarios": "21:00"
+          }
+        ]
+      },
+      {
+        "titulo": "DEVORADORES DE ESTRELAS",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "L",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/cbb75445-94e0-4d97-8e75-241e761ba3d7.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 3D",
+            "horarios": "14:30, 16:30, 18:30, 20:30"
+          },
+          {
+            "formato": "DUB | 2D",
+            "horarios": "15:30, 17:30, 19:30"
+          }
+        ]
+      },
+      {
         "titulo": "Título Indisponível",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/8811fcdb-0750-4c5f-a1db-eba7bfe22ffc.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "20:00"
+          }
+        ]
+      }
+    ],
+    "04/04": [
+      {
+        "titulo": "CASAMENTO SANGRENTO: A VIÚVA",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "16",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/8287579b-7161-4525-9120-01e83a0498f0.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "16:00, 18:00"
+          }
+        ]
+      },
+      {
+        "titulo": "A ÚLTIMA CEIA",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "16",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/3c901247-2b05-4d2e-950b-8554c7a6700f.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "17:00"
+          }
+        ]
+      },
+      {
+        "titulo": "VELHOS BANDIDOS",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/66186813-be25-4836-85b1-b41ef7ad5fc6.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "19:00"
+          }
+        ]
+      },
+      {
+        "titulo": "SUPER MARIO GALAXY: O FILME",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/ebe84618-e8a1-4795-b30c-ecee65fc29ec.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "15:00"
+          },
+          {
+            "formato": "NAC | 2D",
+            "horarios": "21:00"
+          }
+        ]
+      },
+      {
+        "titulo": "DEVORADORES DE ESTRELAS",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "L",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/cbb75445-94e0-4d97-8e75-241e761ba3d7.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 3D",
+            "horarios": "14:30, 16:30, 18:30, 20:30"
+          },
+          {
+            "formato": "DUB | 2D",
+            "horarios": "15:30, 17:30, 19:30"
+          }
+        ]
+      },
+      {
+        "titulo": "Título Indisponível",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/8811fcdb-0750-4c5f-a1db-eba7bfe22ffc.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "20:00"
+          }
+        ]
+      }
+    ],
+    "05/04": [
+      {
+        "titulo": "CASAMENTO SANGRENTO: A VIÚVA",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "16",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/8287579b-7161-4525-9120-01e83a0498f0.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "16:00, 18:00"
+          }
+        ]
+      },
+      {
+        "titulo": "A ÚLTIMA CEIA",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "16",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/3c901247-2b05-4d2e-950b-8554c7a6700f.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "17:00"
+          }
+        ]
+      },
+      {
+        "titulo": "VELHOS BANDIDOS",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/66186813-be25-4836-85b1-b41ef7ad5fc6.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "19:00"
+          }
+        ]
+      },
+      {
+        "titulo": "SUPER MARIO GALAXY: O FILME",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/ebe84618-e8a1-4795-b30c-ecee65fc29ec.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "15:00"
+          },
+          {
+            "formato": "NAC | 2D",
+            "horarios": "21:00"
+          }
+        ]
+      },
+      {
+        "titulo": "DEVORADORES DE ESTRELAS",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "L",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/cbb75445-94e0-4d97-8e75-241e761ba3d7.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 3D",
+            "horarios": "14:30, 16:30, 18:30, 20:30"
+          },
+          {
+            "formato": "DUB | 2D",
+            "horarios": "15:30, 17:30, 19:30"
+          }
+        ]
+      },
+      {
+        "titulo": "Título Indisponível",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/8811fcdb-0750-4c5f-a1db-eba7bfe22ffc.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "20:00"
+          }
+        ]
+      }
+    ],
+    "06/04": [
+      {
+        "titulo": "CASAMENTO SANGRENTO: A VIÚVA",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "16",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/8287579b-7161-4525-9120-01e83a0498f0.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "18:00"
+          }
+        ]
+      },
+      {
+        "titulo": "A ÚLTIMA CEIA",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "16",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/3c901247-2b05-4d2e-950b-8554c7a6700f.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "17:00"
+          }
+        ]
+      },
+      {
+        "titulo": "VELHOS BANDIDOS",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/66186813-be25-4836-85b1-b41ef7ad5fc6.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "19:00"
+          }
+        ]
+      },
+      {
+        "titulo": "SUPER MARIO GALAXY: O FILME",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/ebe84618-e8a1-4795-b30c-ecee65fc29ec.jpg",
+        "sessoes": [
+          {
+            "formato": "NAC | 2D",
+            "horarios": "21:00"
+          }
+        ]
+      },
+      {
+        "titulo": "DEVORADORES DE ESTRELAS",
         "duracao": "--h--",
         "genero": "Indefinido",
         "classificacao": "L",
@@ -95,13 +411,82 @@
           {
             "formato": "DUB | 3D",
             "horarios": "16:30, 18:30, 20:30"
+          },
+          {
+            "formato": "DUB | 2D",
+            "horarios": "17:30, 19:30"
+          }
+        ]
+      },
+      {
+        "titulo": "Título Indisponível",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/8811fcdb-0750-4c5f-a1db-eba7bfe22ffc.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "20:00"
           }
         ]
       }
     ],
-    "04/04": [
+    "07/04": [
       {
-        "titulo": "Título Indisponível",
+        "titulo": "CASAMENTO SANGRENTO: A VIÚVA",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "16",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/8287579b-7161-4525-9120-01e83a0498f0.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "18:00"
+          }
+        ]
+      },
+      {
+        "titulo": "A ÚLTIMA CEIA",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "16",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/3c901247-2b05-4d2e-950b-8554c7a6700f.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "17:00"
+          }
+        ]
+      },
+      {
+        "titulo": "VELHOS BANDIDOS",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/66186813-be25-4836-85b1-b41ef7ad5fc6.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "19:00"
+          }
+        ]
+      },
+      {
+        "titulo": "SUPER MARIO GALAXY: O FILME",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/ebe84618-e8a1-4795-b30c-ecee65fc29ec.jpg",
+        "sessoes": [
+          {
+            "formato": "NAC | 2D",
+            "horarios": "21:00"
+          }
+        ]
+      },
+      {
+        "titulo": "DEVORADORES DE ESTRELAS",
         "duracao": "--h--",
         "genero": "Indefinido",
         "classificacao": "L",
@@ -109,14 +494,83 @@
         "sessoes": [
           {
             "formato": "DUB | 3D",
-            "horarios": "14:30, 16:30, 18:30, 20:30"
+            "horarios": "16:30, 18:30, 20:30"
+          },
+          {
+            "formato": "DUB | 2D",
+            "horarios": "17:30, 19:30"
+          }
+        ]
+      },
+      {
+        "titulo": "Título Indisponível",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/8811fcdb-0750-4c5f-a1db-eba7bfe22ffc.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "20:00"
           }
         ]
       }
     ],
-    "05/04": [
+    "08/04": [
       {
-        "titulo": "Título Indisponível",
+        "titulo": "CASAMENTO SANGRENTO: A VIÚVA",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "16",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/8287579b-7161-4525-9120-01e83a0498f0.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "18:00"
+          }
+        ]
+      },
+      {
+        "titulo": "A ÚLTIMA CEIA",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "16",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/3c901247-2b05-4d2e-950b-8554c7a6700f.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "17:00"
+          }
+        ]
+      },
+      {
+        "titulo": "VELHOS BANDIDOS",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/66186813-be25-4836-85b1-b41ef7ad5fc6.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "19:00"
+          }
+        ]
+      },
+      {
+        "titulo": "SUPER MARIO GALAXY: O FILME",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/ebe84618-e8a1-4795-b30c-ecee65fc29ec.jpg",
+        "sessoes": [
+          {
+            "formato": "NAC | 2D",
+            "horarios": "21:00"
+          }
+        ]
+      },
+      {
+        "titulo": "DEVORADORES DE ESTRELAS",
         "duracao": "--h--",
         "genero": "Indefinido",
         "classificacao": "L",
@@ -124,12 +578,28 @@
         "sessoes": [
           {
             "formato": "DUB | 3D",
-            "horarios": "14:30, 16:30, 18:30, 20:30"
+            "horarios": "16:30, 18:30, 20:30"
+          },
+          {
+            "formato": "DUB | 2D",
+            "horarios": "17:30, 19:30"
+          }
+        ]
+      },
+      {
+        "titulo": "Título Indisponível",
+        "duracao": "--h--",
+        "genero": "Indefinido",
+        "classificacao": "14",
+        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/8811fcdb-0750-4c5f-a1db-eba7bfe22ffc.jpg",
+        "sessoes": [
+          {
+            "formato": "DUB | 2D",
+            "horarios": "20:00"
           }
         ]
       }
-    ],
-    "06/04": []
+    ]
   },
-  "ultimaAtualizacao": "02/04/2026, 11:47:27"
+  "ultimaAtualizacao": "02/04/2026, 11:57:46"
 }
