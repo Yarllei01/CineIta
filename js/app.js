@@ -66,7 +66,9 @@ function renderizarSeletorDatas(datas, emCartaz) {
 }
 
 function obterClasseRating(classificacao) {
-    if (!classificacao) return 'rating-L';
+    if (!classificacao) {
+        return 'rating-L';
+    }
     const idade = classificacao.toString().toUpperCase().replace(/[^0-9L]/g, '');
     return `rating-${idade}`;
 }
@@ -105,7 +107,7 @@ function renderizarFilmes(filmesDoDia) {
                 <h2>${filme.titulo}</h2>
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
                     <span class="tag-classificacao ${ratingClass}">${filme.classificacao}</span>
-                    <span class="detalhes" style="margin: 0;">${filme.duracao} | ${filme.genero}</span>
+                    <span class="detalhes" style="margin: 0;">${filme.genero ? filme.genero + ' | ' : ''}${filme.duracao}</span>
                 </div>
                 <div class="sessoes-container">
                     ${htmlSessoes}
@@ -125,8 +127,8 @@ function configurarBotaoCompartilhar(emCartaz, dataAtiva) {
         
         for (let i = 0; i < filmes.length; i++) {
             const f = filmes[i];
-            texto += "*" + f.titulo + "* (" + f.duracao + ")\n";
-            texto += "-" + f.genero + "-\n";
+            texto += "*" + f.titulo + "*\n";
+            texto += (f.genero ? f.genero + " | " : "") + f.duracao + "\n";
             for (let k = 0; k < f.sessoes.length; k++) {
                 texto += "- " + f.sessoes[k].formato + ": " + f.sessoes[k].horarios + "\n";
             }

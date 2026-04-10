@@ -5,13 +5,20 @@ const { autoScroll, selecionarCidade } = require('./utils');
 const { extrairEmCartaz } = require('./cartaz');
 
 function limparDatasAntigas(emCartaz) {
-    const hoje = new Date();
-    hoje.setHours(0, 0, 0, 0);
+    const agora = new Date();
+    const fusoBrasilia = new Date(agora.getTime() - (3 * 60 * 60 * 1000));
+    
+    const anoAtual = fusoBrasilia.getUTCFullYear();
+    const mesAtual = fusoBrasilia.getUTCMonth();
+    const diaAtual = fusoBrasilia.getUTCDate();
+    const dataHojeBRT = new Date(anoAtual, mesAtual, diaAtual);
+
     const chaves = Object.keys(emCartaz);
     for (let i = 0; i < chaves.length; i++) {
         const partes = chaves[i].split('/');
-        const dataChave = new Date(hoje.getFullYear(), parseInt(partes[1]) - 1, parseInt(partes[0]));
-        if (dataChave < hoje) {
+        const dataChave = new Date(anoAtual, parseInt(partes[1]) - 1, parseInt(partes[0]));
+
+        if (dataChave < dataHojeBRT) {
             delete emCartaz[chaves[i]];
         }
     }
@@ -28,6 +35,10 @@ async function rasparCartaz() {
         const page = await browser.newPage();
         await page.goto('https://lasercinemas.com.br/programacao/', { waitUntil: 'networkidle2' });
         await selecionarCidade(page, 'Itabaiana');
+        
+        // Trava 1: Aguarda os cards dos filmes surgirem no HTML por até 15 segundos
+        await page.waitForSelector('[id^="movie-"]', { timeout: 15000 }).catch(() => {});
+        
         await autoScroll(page);
         const dados = await page.evaluate(extrairEmCartaz);
         await browser.close();
@@ -57,10 +68,16 @@ async function executar() {
         const chavesNovas = Object.keys(novosCartaz);
         for (let i = 0; i < chavesNovas.length; i++) {
             const chave = chavesNovas[i];
-            dadosAtuais.emCartaz[chave] = novosCartaz[chave];
+            
+            // Trava 2: Impede que um dia vazio delete o histórico que já existe
+            if (novosCartaz[chave] && novosCartaz[chave].length > 0) {
+                dadosAtuais.emCartaz[chave] = novosCartaz[chave];
+            }
         }
         dadosAtuais.emCartaz = limparDatasAntigas(dadosAtuais.emCartaz);
-        dadosAtuais.ultimaAtualizacao = new Date().toLocaleString('pt-BR');
+        
+        const agoraBRT = new Date(new Date().getTime() - (3 * 60 * 60 * 1000));
+        dadosAtuais.ultimaAtualizacao = agoraBRT.toLocaleString('pt-BR');
     } catch (e) {}
 
     fs.writeFileSync(caminhoArquivo, JSON.stringify(dadosAtuais, null, 2));

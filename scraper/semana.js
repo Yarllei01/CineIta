@@ -4,13 +4,18 @@ const path = require('path');
 const { autoScroll, selecionarCidade } = require('./utils');
 
 function limparDatasAntigas(emCartaz) {
-    const hoje = new Date();
-    hoje.setHours(0, 0, 0, 0);
+    const agora = new Date();
+    const fusoBrasilia = new Date(agora.getTime() - (3 * 60 * 60 * 1000));
+    const anoAtual = fusoBrasilia.getUTCFullYear();
+    const mesAtual = fusoBrasilia.getUTCMonth();
+    const diaAtual = fusoBrasilia.getUTCDate();
+    const dataHojeBRT = new Date(anoAtual, mesAtual, diaAtual);
     const chaves = Object.keys(emCartaz);
+    
     for (let i = 0; i < chaves.length; i++) {
         const partes = chaves[i].split('/');
-        const dataChave = new Date(hoje.getFullYear(), parseInt(partes[1]) - 1, parseInt(partes[0]));
-        if (dataChave < hoje) {
+        const dataChave = new Date(anoAtual, parseInt(partes[1]) - 1, parseInt(partes[0]));
+        if (dataChave < dataHojeBRT) {
             delete emCartaz[chaves[i]];
         }
     }
@@ -19,104 +24,93 @@ function limparDatasAntigas(emCartaz) {
 
 async function rasparDia(page) {
     return await page.evaluate(() => {
-        const celulas = document.querySelectorAll('[id^="movie-"]');
+        const blocosImagem = document.querySelectorAll('div[id^="movie-"]');
         let filmes = [];
 
-        for (let i = 0; i < celulas.length; i++) {
-            const celula = celulas[i];
-            const imgElement = celula.querySelector('img');
+        for (let i = 0; i < blocosImagem.length; i++) {
+            const blocoImg = blocosImagem[i];
+
             let imagem = 'assets/poster-fallback.jpg';
-            if (imgElement && imgElement.src.includes('http')) {
+            const imgElement = blocoImg.querySelector('img');
+            if (imgElement && imgElement.src && imgElement.src.includes('http')) {
                 imagem = imgElement.src;
             }
 
+            let sibling = blocoImg.nextElementSibling;
+            let blocoInfo = null;
+            let blocoSessoes = null;
+
+            while (sibling && !(sibling.id && sibling.id.startsWith('movie-'))) {
+                if (!blocoInfo && sibling.querySelector('span[translate="no"]')) {
+                    blocoInfo = sibling;
+                } else if (!blocoSessoes && sibling.innerHTML.match(/\d{2}:\d{2}/)) {
+                    blocoSessoes = sibling;
+                }
+                sibling = sibling.nextElementSibling;
+            }
+
             let titulo = 'Título Indisponível';
-            let genero = 'Indefinido';
+            let genero = '';
             let classificacao = 'Livre';
             let duracao = '--h--';
+
+            var prev = blocoImg.previousElementSibling;
+            if (prev) {
+                var h6 = prev.querySelector('h6');
+                if (h6 && h6.textContent.trim()) {
+                    titulo = h6.textContent.trim();
+                }
+            }
+
+            if (blocoInfo) {
+                var pGenero = blocoInfo.querySelector('p');
+                if (pGenero && pGenero.textContent.trim()) {
+                    genero = pGenero.textContent.trim();
+                }
+                const spans = blocoInfo.querySelectorAll('span[translate="no"]');
+                if (spans.length > 0) classificacao = spans[0].textContent.trim().toUpperCase();
+                if (spans.length > 1) duracao = spans[1].textContent.trim();
+            }
+
             let sessoesMap = {};
-
-            let curr = celula.nextElementSibling;
-            
-            while (curr && !curr.id.startsWith('movie-')) {
-                const headings = curr.querySelectorAll('h1, h2, h3, h4, h5, h6');
-                if (headings.length > 0 && titulo === 'Título Indisponível') {
-                    titulo = headings[0].innerText.trim();
-                }
-
-                const linhas = curr.innerText.split('\n');
-                for (let j = 0; j < linhas.length; j++) {
-                    const txt = linhas[j].trim();
-                    if (txt.includes('|') && /\d{2}h\d{2}/.test(txt)) {
-                        const partes = txt.split('|');
-                        duracao = partes[0].trim();
-                        genero = partes[1].trim();
-                    } else if (/^(L|10|12|14|16|18)$/.test(txt) && classificacao === 'Livre') {
-                        classificacao = txt;
-                    }
-                }
-
-                const links = curr.querySelectorAll('a, button');
-                for (let j = 0; j < links.length; j++) {
-                    const b = links[j];
-                    const txt = b.innerText;
-                    let formatoStr = 'Padrão';
-                    if (txt.includes('|') && !/\d{2}h\d{2}/.test(txt)) {
-                        formatoStr = txt.split('\n')[0].trim();
-                    }
-                    const match = txt.match(/\d{2}:\d{2}/);
-                    if (match) {
-                        if (!sessoesMap[formatoStr]) {
-                            sessoesMap[formatoStr] = [];
+            if (blocoSessoes) {
+                const els = blocoSessoes.querySelectorAll('h6, p, span');
+                let formatoAtual = 'Padrão';
+                for (let e = 0; e < els.length; e++) {
+                    const txt = els[e].textContent.trim();
+                    if (txt.includes('DUB') || txt.includes('LEG') || txt.includes('NAC')) {
+                        formatoAtual = txt;
+                    } else if (txt.match(/^\d{2}:\d{2}$/)) {
+                        if (!sessoesMap[formatoAtual]) sessoesMap[formatoAtual] = [];
+                        if (!sessoesMap[formatoAtual].includes(txt)) {
+                            sessoesMap[formatoAtual].push(txt);
                         }
-                        sessoesMap[formatoStr].push(match[0]);
                     }
                 }
-
-                curr = curr.nextElementSibling;
             }
 
             let sessoes = [];
             const chavesFormatos = Object.keys(sessoesMap);
             for (let k = 0; k < chavesFormatos.length; k++) {
-                const form = chavesFormatos[k];
-                let horariosUnicos = [];
-                for (let h = 0; h < sessoesMap[form].length; h++) {
-                    let horarioAtual = sessoesMap[form][h];
-                    let achou = false;
-                    for (let u = 0; u < horariosUnicos.length; u++) {
-                        if (horariosUnicos[u] === horarioAtual) {
-                            achou = true;
-                            break;
-                        }
-                    }
-                    if (!achou) {
-                        horariosUnicos.push(horarioAtual);
-                    }
-                }
                 sessoes.push({
-                    formato: form,
-                    horarios: horariosUnicos.join(', ')
+                    formato: chavesFormatos[k],
+                    horarios: sessoesMap[chavesFormatos[k]].join(', ')
                 });
             }
 
             if (sessoes.length === 0) {
-                sessoes.push({
-                    formato: 'Padrão',
-                    horarios: 'Sem sessões hoje'
-                });
+                sessoes.push({ formato: 'Padrão', horarios: 'Sem sessões hoje' });
             }
 
             filmes.push({
                 titulo: titulo,
-                duracao: duracao,
                 genero: genero,
+                duracao: duracao,
                 classificacao: classificacao,
                 imagem: imagem,
                 sessoes: sessoes
             });
         }
-
         return filmes;
     });
 }
@@ -131,22 +125,24 @@ async function executarSemana() {
     try {
         const page = await browser.newPage();
         await page.goto('https://lasercinemas.com.br/programacao/', { waitUntil: 'networkidle2' });
-        
         await selecionarCidade(page, 'Itabaiana');
-        
-        await page.waitForSelector('[id^="movie-"]', { timeout: 15000 });
+        await page.waitForSelector('div[id^="movie-"]', { timeout: 15000 });
         await new Promise(r => setTimeout(r, 2000));
 
         const emCartazSemana = {};
 
         const diasEncontrados = await page.evaluate(() => {
-            const botoes = Array.from(document.querySelectorAll('button')).filter(b => b.offsetParent !== null);
+            const botoesNodeList = document.querySelectorAll('button');
+            const botoes = [];
+            for (let n = 0; n < botoesNodeList.length; n++) {
+                if (botoesNodeList[n].offsetParent !== null) {
+                    botoes.push(botoesNodeList[n]);
+                }
+            }
             const mesesValidos = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
             const resultados = [];
-            
             for (let i = 0; i < botoes.length; i++) {
-                const texto = (botoes[i].innerText || botoes[i].textContent || '').toUpperCase();
-                
+                const texto = (botoes[i].textContent || '').toUpperCase();
                 let mesEncontrado = null;
                 for (let m = 0; m < mesesValidos.length; m++) {
                     if (texto.includes(mesesValidos[m])) {
@@ -154,13 +150,10 @@ async function executarSemana() {
                         break;
                     }
                 }
-
-                const matchDia = texto.match(/\b(0?[1-9]|[12][0-9]|3[01])\b/);
-
+                const matchDia = texto.match(/(\d{1,2})/);
                 if (mesEncontrado && matchDia) {
                     let dia = matchDia[0];
                     if (dia.length === 1) dia = '0' + dia;
-
                     let jaExiste = false;
                     for (let r = 0; r < resultados.length; r++) {
                         if (resultados[r].mes === mesEncontrado && resultados[r].dia === dia) {
@@ -168,12 +161,8 @@ async function executarSemana() {
                             break;
                         }
                     }
-                    
                     if (!jaExiste && resultados.length < 7) {
-                        resultados.push({ 
-                            dia: dia, 
-                            mes: mesEncontrado 
-                        });
+                        resultados.push({ dia: dia, mes: mesEncontrado });
                     }
                 }
             }
@@ -190,19 +179,16 @@ async function executarSemana() {
             const alvo = diasEncontrados[i];
             const botoesElemento = await page.$$('button');
             let clicou = false;
-            
             for (let b = 0; b < botoesElemento.length; b++) {
                 const btn = botoesElemento[b];
                 const isVisible = await page.evaluate(el => el.offsetParent !== null, btn);
                 if (!isVisible) continue;
-
-                const texto = await page.evaluate(el => (el.innerText || el.textContent || '').toUpperCase(), btn);
-                const matchDia = texto.match(/\b(0?[1-9]|[12][0-9]|3[01])\b/);
                 
+                const texto = await page.evaluate(el => (el.textContent || '').toUpperCase(), btn);
+                const matchDia = texto.match(/(\d{1,2})/);
                 if (texto.includes(alvo.mes) && matchDia) {
                     let diaBtn = matchDia[0];
                     if (diaBtn.length === 1) diaBtn = '0' + diaBtn;
-                    
                     if (diaBtn === alvo.dia) {
                         await btn.click();
                         clicou = true;
@@ -210,20 +196,19 @@ async function executarSemana() {
                     }
                 }
             }
-            
             if (clicou) {
-                await new Promise(r => setTimeout(r, 3500));
+                await new Promise(r => setTimeout(r, 5000));
                 await autoScroll(page);
-                
                 const filmesDoDia = await rasparDia(page);
-                const dataFormatada = alvo.dia + '/' + mesesMap[alvo.mes];
-                emCartazSemana[dataFormatada] = filmesDoDia;
+                if (filmesDoDia && filmesDoDia.length > 0) {
+                    const dataFormatada = alvo.dia + '/' + mesesMap[alvo.mes];
+                    emCartazSemana[dataFormatada] = filmesDoDia;
+                }
             }
         }
 
         const caminhoArquivo = path.join(__dirname, '..', 'filmes.json');
         let dadosAtuais = { emCartaz: {}, ultimaAtualizacao: '' };
-
         if (fs.existsSync(caminhoArquivo)) {
             try {
                 const rawData = fs.readFileSync(caminhoArquivo);
@@ -231,15 +216,21 @@ async function executarSemana() {
                 if (dadosAntigos.ultimaAtualizacao) {
                     dadosAtuais.ultimaAtualizacao = dadosAntigos.ultimaAtualizacao;
                 }
+                if (dadosAntigos.emCartaz && Object.keys(emCartazSemana).length === 0) {
+                    dadosAtuais.emCartaz = dadosAntigos.emCartaz; 
+                }
             } catch (e) {}
         }
+        
+        if (Object.keys(emCartazSemana).length > 0) {
+            dadosAtuais.emCartaz = emCartazSemana;
+        }
 
-        dadosAtuais.emCartaz = emCartazSemana;
         dadosAtuais.emCartaz = limparDatasAntigas(dadosAtuais.emCartaz);
-        dadosAtuais.ultimaAtualizacao = new Date().toLocaleString('pt-BR');
+        const agoraBRT = new Date(new Date().getTime() - (3 * 60 * 60 * 1000));
+        dadosAtuais.ultimaAtualizacao = agoraBRT.toLocaleString('pt-BR');
         
         fs.writeFileSync(caminhoArquivo, JSON.stringify(dadosAtuais, null, 2));
-        
         await browser.close();
     } catch (erro) {
         await browser.close();

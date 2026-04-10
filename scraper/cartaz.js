@@ -1,83 +1,93 @@
 const extrairEmCartaz = () => {
-    const dataAtual = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+    const agora = new Date();
+    const fusoBrasilia = new Date(agora.getTime() - (3 * 60 * 60 * 1000));
+    let diaStr = fusoBrasilia.getUTCDate().toString().padStart(2, '0');
+    let mesStr = (fusoBrasilia.getUTCMonth() + 1).toString().padStart(2, '0');
+    const dataAtual = diaStr + '/' + mesStr;
     let filmes = {};
     filmes[dataAtual] = [];
 
-    const celulas = document.querySelectorAll('[id^="movie-"]');
+    const blocosImagem = document.querySelectorAll('div[id^="movie-"]');
 
-    for (let i = 0; i < celulas.length; i++) {
-        const celula = celulas[i];
-        const imgElement = celula.querySelector('img');
-        const imagem = imgElement && imgElement.src.includes('http') ? imgElement.src : 'assets/poster-fallback.jpg';
+    for (let i = 0; i < blocosImagem.length; i++) {
+        const blocoImg = blocosImagem[i];
+
+        let imagem = 'assets/poster-fallback.jpg';
+        const imgElement = blocoImg.querySelector('img');
+        if (imgElement && imgElement.src && imgElement.src.includes('http')) {
+            imagem = imgElement.src;
+        }
+
+        let sibling = blocoImg.nextElementSibling;
+        let blocoInfo = null;
+        let blocoSessoes = null;
+
+        while (sibling && !(sibling.id && sibling.id.startsWith('movie-'))) {
+            if (!blocoInfo && sibling.querySelector('span[translate="no"]')) {
+                blocoInfo = sibling;
+            } else if (!blocoSessoes && sibling.innerHTML.match(/\d{2}:\d{2}/)) {
+                blocoSessoes = sibling;
+            }
+            sibling = sibling.nextElementSibling;
+        }
 
         let titulo = 'Título Indisponível';
-        let genero = 'Indefinido';
+        let genero = '';
         let classificacao = 'Livre';
         let duracao = '--h--';
+
+        var prev = blocoImg.previousElementSibling;
+        if (prev) {
+            var h6 = prev.querySelector('h6');
+            if (h6 && h6.textContent.trim()) {
+                titulo = h6.textContent.trim();
+            }
+        }
+
+        if (blocoInfo) {
+            var pGenero = blocoInfo.querySelector('p');
+            if (pGenero && pGenero.textContent.trim()) {
+                genero = pGenero.textContent.trim();
+            }
+            const spans = blocoInfo.querySelectorAll('span[translate="no"]');
+            if (spans.length > 0) classificacao = spans[0].textContent.trim().toUpperCase();
+            if (spans.length > 1) duracao = spans[1].textContent.trim();
+        }
+
         let sessoesMap = {};
-
-        let curr = celula.nextElementSibling;
-        
-        while (curr && !curr.id.startsWith('movie-')) {
-            const headings = curr.querySelectorAll('h1, h2, h3, h4, h5, h6');
-            if (headings.length > 0 && titulo === 'Título Indisponível') {
-                titulo = headings[0].innerText.trim();
-            }
-
-            const linhas = curr.innerText.split('\n');
-            for (let j = 0; j < linhas.length; j++) {
-                const txt = linhas[j].trim();
-                if (txt.includes('|') && /\d{2}h\d{2}/.test(txt)) {
-                    const partes = txt.split('|');
-                    duracao = partes[0].trim();
-                    genero = partes[1].trim();
-                } else if (/^(L|10|12|14|16|18)$/.test(txt) && classificacao === 'Livre') {
-                    classificacao = txt;
-                }
-            }
-
-            const links = curr.querySelectorAll('a, button');
-            for (let j = 0; j < links.length; j++) {
-                const b = links[j];
-                const txt = b.innerText;
-                let formatoStr = 'Padrão';
-                if (txt.includes('|') && !/\d{2}h\d{2}/.test(txt)) {
-                    formatoStr = txt.split('\n')[0].trim();
-                }
-                const match = txt.match(/\d{2}:\d{2}/);
-                if (match) {
-                    if (!sessoesMap[formatoStr]) {
-                        sessoesMap[formatoStr] = [];
+        if (blocoSessoes) {
+            const els = blocoSessoes.querySelectorAll('h6, p, span');
+            let formatoAtual = 'Padrão';
+            for (let e = 0; e < els.length; e++) {
+                const txt = els[e].textContent.trim();
+                if (txt.includes('DUB') || txt.includes('LEG') || txt.includes('NAC')) {
+                    formatoAtual = txt;
+                } else if (txt.match(/^\d{2}:\d{2}$/)) {
+                    if (!sessoesMap[formatoAtual]) sessoesMap[formatoAtual] = [];
+                    if (!sessoesMap[formatoAtual].includes(txt)) {
+                        sessoesMap[formatoAtual].push(txt);
                     }
-                    sessoesMap[formatoStr].push(match[0]);
                 }
             }
-
-            curr = curr.nextElementSibling;
         }
 
         let sessoes = [];
         const chavesFormatos = Object.keys(sessoesMap);
         for (let k = 0; k < chavesFormatos.length; k++) {
-            const form = chavesFormatos[k];
-            const horariosUnicos = [...new Set(sessoesMap[form])];
             sessoes.push({
-                formato: form,
-                horarios: horariosUnicos.join(', ')
+                formato: chavesFormatos[k],
+                horarios: sessoesMap[chavesFormatos[k]].join(', ')
             });
         }
 
         if (sessoes.length === 0) {
-            sessoes.push({
-                formato: 'Padrão',
-                horarios: 'Sem sessões hoje'
-            });
+            sessoes.push({ formato: 'Padrão', horarios: 'Sem sessões hoje' });
         }
 
         filmes[dataAtual].push({
             titulo: titulo,
-            duracao: duracao,
             genero: genero,
+            duracao: duracao,
             classificacao: classificacao,
             imagem: imagem,
             sessoes: sessoes
