@@ -1,76 +1,5 @@
 {
   "emCartaz": {
-    "10/04": [
-      {
-        "titulo": "VELHOS BANDIDOS",
-        "genero": "Ação",
-        "duracao": "01h34",
-        "classificacao": "14",
-        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/ebe84618-e8a1-4795-b30c-ecee65fc29ec.jpg",
-        "sessoes": [
-          {
-            "formato": "DUB | 2D",
-            "horarios": "17:30"
-          }
-        ]
-      },
-      {
-        "titulo": "O DRAMA",
-        "genero": "Romance",
-        "duracao": "01h45",
-        "classificacao": "14",
-        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/373c7449-7628-4249-b8b3-4417a51c76a7.jpg",
-        "sessoes": [
-          {
-            "formato": "DUB | 2D",
-            "horarios": "17:00, 19:00, 21:00"
-          }
-        ]
-      },
-      {
-        "titulo": "SUPER MARIO GALAXY: O FILME",
-        "genero": "Animação",
-        "duracao": "01h39",
-        "classificacao": "L",
-        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/cbb75445-94e0-4d97-8e75-241e761ba3d7.jpg",
-        "sessoes": [
-          {
-            "formato": "DUB | 3D",
-            "horarios": "16:30, 18:30"
-          },
-          {
-            "formato": "DUB | 2D",
-            "horarios": "20:30"
-          }
-        ]
-      },
-      {
-        "titulo": "OS ESTRANHOS: CAPÍTULO FINAL",
-        "genero": "Terror",
-        "duracao": "01h31",
-        "classificacao": "18",
-        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/40f66d9f-04d3-4cd0-afb2-224832082a66.jpg",
-        "sessoes": [
-          {
-            "formato": "DUB | 2D",
-            "horarios": "18:00, 20:00"
-          }
-        ]
-      },
-      {
-        "titulo": "DEVORADORES DE ESTRELAS",
-        "genero": "Aventura",
-        "duracao": "02h40",
-        "classificacao": "14",
-        "imagem": "https://content.lasercinemas.com.br/imgs/capa/web/8811fcdb-0750-4c5f-a1db-eba7bfe22ffc.jpg",
-        "sessoes": [
-          {
-            "formato": "DUB | 2D",
-            "horarios": "19:30"
-          }
-        ]
-      }
-    ],
     "11/04": [
       {
         "titulo": "ELES VÃO TE MATAR",
@@ -472,5 +401,5 @@
       }
     ]
   },
-  "ultimaAtualizacao": "10/04/2026, 17:00:01"
+  "ultimaAtualizacao": "11/04/2026, 08:32:06"
 }
