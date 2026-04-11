@@ -12,7 +12,7 @@ async function iniciarApp() {
         document.getElementById('seletor-datas').style.display = 'flex';
         document.getElementById('btn-compartilhar').style.display = 'block';
         renderizarSeletorDatas(datasDisponiveis, dados.emCartaz);
-        renderizarFilmes(dados.emCartaz[datasDisponiveis[0]]);
+        renderizarFilmes(dados.emCartaz[datasDisponiveis[0]], datasDisponiveis[0]);
         configurarBotaoCompartilhar(dados.emCartaz, datasDisponiveis[0]);
     }
 }
@@ -38,18 +38,23 @@ function renderizarSeletorDatas(datas, emCartaz) {
     const seletor = document.getElementById('seletor-datas');
     seletor.innerHTML = '';
 
+    const agora = new Date();
+    const fusoBrasilia = new Date(agora.getTime() - (3 * 60 * 60 * 1000));
+    const hojeStr = fusoBrasilia.getUTCDate().toString().padStart(2, '0') + '/' + (fusoBrasilia.getUTCMonth() + 1).toString().padStart(2, '0');
+
     for (let i = 0; i < datas.length; i++) {
         const infoData = formatarDataParaBotao(datas[i]);
+        const ehHoje = datas[i] === hojeStr;
         const btn = document.createElement('button');
         btn.className = 'btn-data';
         if (i === 0) {
             btn.classList.add('ativo');
         }
-        
+
         btn.innerHTML = `
             <span class="mes">${infoData.mes}</span>
             <span class="dia">${infoData.dia}</span>
-            <span class="semana">${infoData.semana}</span>
+            <span class="semana${ehHoje ? ' hoje' : ''}">${ehHoje ? 'HOJE' : infoData.semana}</span>
         `;
         
         btn.onclick = function() {
@@ -58,7 +63,7 @@ function renderizarSeletorDatas(datas, emCartaz) {
                 botoes[j].classList.remove('ativo');
             }
             this.classList.add('ativo');
-            renderizarFilmes(emCartaz[datas[i]]);
+            renderizarFilmes(emCartaz[datas[i]], datas[i]);
             configurarBotaoCompartilhar(emCartaz, datas[i]);
         };
         seletor.appendChild(btn);
@@ -73,23 +78,30 @@ function obterClasseRating(classificacao) {
     return `rating-${idade}`;
 }
 
-function renderizarFilmes(filmesDoDia) {
+function renderizarFilmes(filmesDoDia, dataSelecionada) {
     const container = document.getElementById('lista-filmes');
     container.innerHTML = '';
 
+    const agora = new Date();
+    const brStr = agora.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit', hour12: false });
+    const hojeStr = agora.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit' });
+    const ehHoje = dataSelecionada === hojeStr;
+
     for (let i = 0; i < filmesDoDia.length; i++) {
         const filme = filmesDoDia[i];
-        const ratingClass = obterClasseRating(filme.classificacao); 
+        const ratingClass = obterClasseRating(filme.classificacao);
         const card = document.createElement('div');
         card.className = 'filme-card';
-        
+        card.style.animationDelay = (i * 0.08) + 's';
+
         let htmlSessoes = '';
         for (let k = 0; k < filme.sessoes.length; k++) {
             const sessao = filme.sessoes[k];
             let badgesHorarios = '';
             const listaHorarios = sessao.horarios.split(', ');
             for (let j = 0; j < listaHorarios.length; j++) {
-                badgesHorarios += '<span class="horario-badge">' + listaHorarios[j] + '</span>';
+                const expirado = ehHoje && listaHorarios[j].match(/^\d{2}:\d{2}$/) && listaHorarios[j] < brStr;
+                badgesHorarios += '<span class="horario-badge' + (expirado ? ' expirado' : '') + '">' + listaHorarios[j] + '</span>';
             }
             htmlSessoes += `
                 <div class="grupo-sessao" style="margin-bottom: 12px;">

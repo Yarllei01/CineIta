@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cineita-v5';
+const CACHE_NAME = 'cineita-v6';
 
 const urlsToCache = [
     '/',
@@ -35,7 +35,15 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
     event.respondWith(
-        fetch(event.request).catch(() => {
+        fetch(event.request)
+        .then(response => {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then(cache => {
+                cache.put(event.request, clone);
+            });
+            return response;
+        })
+        .catch(() => {
             return caches.match(event.request);
         })
     );

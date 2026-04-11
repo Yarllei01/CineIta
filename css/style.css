@@ -11,35 +11,61 @@ body {
     padding-bottom: 80px;
 }
 
+/* ---- HEADER ---- */
+
 header {
-    background-color: #22252e;
-    padding: 20px 15px 0;
+    background-color: #1a1a1a;
+    padding: 16px 15px 14px;
     text-align: center;
-    border-bottom: 1px solid #333;
+    position: relative;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    background-color: #e50914;
+    border-radius: 2px;
 }
 
 header h1 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
+    font-size: 1.3rem;
+    margin-bottom: 6px;
     color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
+    letter-spacing: 0.5px;
 }
 
 header h1 .material-symbols-outlined {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
+    color: #e50914;
 }
+
+.subtitulo {
+    font-size: 0.65rem;
+    color: #555;
+    padding-bottom: 0;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* ---- SELETOR DE DATAS ---- */
 
 .seletor-datas {
     display: flex;
     overflow-x: auto;
-    padding: 10px;
-    margin: 15px;
-    gap: 8px;
-    background-color: #1a1c23;
-    border-radius: 12px;
+    padding: 8px;
+    margin: 12px 15px;
+    gap: 6px;
+    background-color: transparent;
+    border-radius: 0;
 }
 
 .seletor-datas::-webkit-scrollbar {
@@ -47,25 +73,28 @@ header h1 .material-symbols-outlined {
 }
 
 .btn-data {
-    background-color: #22252e;
-    border: none;
-    color: #ffffff;
-    padding: 12px 15px;
-    border-radius: 8px;
+    background-color: transparent;
+    border: 1px solid #2a2a2a;
+    color: #888;
+    padding: 10px 14px;
+    border-radius: 10px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 80px;
+    min-width: 72px;
     transition: all 0.2s ease;
 }
 
 .btn-data.ativo {
-    background-color: #ff0000;
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #ffffff;
 }
 
 .btn-data:hover:not(.ativo) {
-    background-color: #333845;
+    border-color: #444;
+    color: #ccc;
 }
 
 .btn-data:active {
@@ -73,52 +102,71 @@ header h1 .material-symbols-outlined {
 }
 
 .btn-data .mes {
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-size: 0.65rem;
+    font-weight: 600;
     text-transform: uppercase;
     margin-bottom: 2px;
+    letter-spacing: 0.5px;
 }
 
 .btn-data .dia {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 800;
     margin-bottom: 2px;
     line-height: 1;
 }
 
 .btn-data .semana {
-    font-size: 0.75rem;
+    font-size: 0.6rem;
     font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
+
+.btn-data .semana.hoje {
+    font-weight: 800;
+}
+
+/* ---- LISTA DE FILMES ---- */
 
 .lista-filmes {
     padding: 0 15px 15px 15px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .filme-card {
-    background-color: #1f1f1f;
-    border-radius: 10px;
+    background-color: #1a1a1a;
+    border-radius: 12px;
     display: flex;
-    padding: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 12px;
+    border: 1px solid #222;
+    transition: transform 0.2s ease;
+    animation: fadeInUp 0.4s ease both;
 }
 
-.filme-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+.filme-card:active {
+    transform: scale(0.98);
 }
 
 .filme-poster {
     width: 80px;
     height: 120px;
-    border-radius: 6px;
+    border-radius: 8px;
     object-fit: cover;
-    margin-right: 15px;
+    margin-right: 12px;
 }
 
 .filme-info {
@@ -129,36 +177,39 @@ header h1 .material-symbols-outlined {
 }
 
 .filme-info h2 {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     margin-bottom: 4px;
+    line-height: 1.3;
+    word-break: break-word;
+    font-weight: 700;
 }
 
 .detalhes {
-    font-size: 0.8rem;
-    color: #bbb;
-    margin-bottom: 8px;
+    font-size: 0.75rem;
+    color: #666;
+    margin-bottom: 10px;
+    letter-spacing: 0.3px;
 }
 
-.formato-classificacao {
-    margin-bottom: 10px;
-}
+/* ---- TAGS ---- */
 
 .tag-formato {
-    background-color: #444;
-    color: #fff;
+    background-color: transparent;
+    color: #999;
     padding: 2px 8px;
     border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    border: none;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border: 1px solid #333;
     display: inline-block;
+    letter-spacing: 0.3px;
 }
 
 .tag-classificacao {
     color: #fff;
-    padding: 2px 8px;
+    padding: 2px 6px;
     border-radius: 4px;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: bold;
     border: none;
     display: inline-block;
@@ -171,58 +222,91 @@ header h1 .material-symbols-outlined {
 .tag-classificacao.rating-12 { background-color: #F8C300; color: #000; }
 .tag-classificacao.rating-14 { background-color: #E95D0F; }
 .tag-classificacao.rating-16 { background-color: #D31317; }
-.tag-classificacao.rating-18 { background-color: #000000; }
+.tag-classificacao.rating-18 { background-color: #1a1a1a; border: 1px solid #444; }
+
+/* ---- HORÁRIOS ---- */
 
 .horarios {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
 }
 
 .horario-badge {
     background-color: #e50914;
     color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
 }
 
-/* Localize e substitua este bloco no seu css/style.css */
+.horario-badge.expirado {
+    background-color: transparent;
+    color: #444;
+    text-decoration: line-through;
+    border: 1px solid #2a2a2a;
+}
+
+/* ---- BOTÃO COMPARTILHAR ---- */
+
 .btn-compartilhar {
     position: fixed;
-    bottom: 20px;
+    bottom: calc(20px + env(safe-area-inset-bottom));
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    background-color: #20b858;
+    background: linear-gradient(180deg, #2ee06e 0%, #20bd5a 100%);
     color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: 30px;
-    font-size: 1rem;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(19, 22, 20, 0.989);
+    padding: 15px 24px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 4px 10px rgba(0, 0, 0, 0.5);
     cursor: pointer;
     width: 90%;
-    max-width: 350px;
-    transition: background-color 0.2s ease;
+    max-width: 340px;
+    transition: all 0.2s ease;
     z-index: 1000;
     text-align: center;
 }
 
 .btn-compartilhar:hover {
-    background-color: #179d48;
+    transform: translateY(-1px);
 }
 
 .btn-compartilhar:active {
-    background-color: #127a36;
+    transform: scale(0.97);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
 }
+
+/* ---- FOOTER ---- */
 
 footer {
     text-align: center;
     padding: 20px;
-    font-size: 0.8rem;
-    color: #666;
+    font-size: 0.7rem;
+    color: #777;
+    letter-spacing: 0.5px;
+}
+
+/* ---- RESPONSIVIDADE ---- */
+
+@media (max-width: 360px) {
+    .filme-poster {
+        width: 65px;
+        height: 100px;
+    }
+
+    .btn-data {
+        min-width: 62px;
+        padding: 8px 10px;
+    }
+
+    .btn-data .dia {
+        font-size: 1.3rem;
+    }
 }

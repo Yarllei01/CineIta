@@ -76,9 +76,10 @@ async function executar() {
         }
         dadosAtuais.emCartaz = limparDatasAntigas(dadosAtuais.emCartaz);
         
-        const agoraBRT = new Date(new Date().getTime() - (3 * 60 * 60 * 1000));
-        dadosAtuais.ultimaAtualizacao = agoraBRT.toLocaleString('pt-BR');
-    } catch (e) {}
+        dadosAtuais.ultimaAtualizacao = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+    } catch (e) {
+        console.error('[index.js] Erro ao raspar cartaz:', e.message || e);
+    }
 
     fs.writeFileSync(caminhoArquivo, JSON.stringify(dadosAtuais, null, 2));
 }

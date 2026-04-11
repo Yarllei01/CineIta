@@ -227,12 +227,12 @@ async function executarSemana() {
         }
 
         dadosAtuais.emCartaz = limparDatasAntigas(dadosAtuais.emCartaz);
-        const agoraBRT = new Date(new Date().getTime() - (3 * 60 * 60 * 1000));
-        dadosAtuais.ultimaAtualizacao = agoraBRT.toLocaleString('pt-BR');
+        dadosAtuais.ultimaAtualizacao = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
         
         fs.writeFileSync(caminhoArquivo, JSON.stringify(dadosAtuais, null, 2));
         await browser.close();
     } catch (erro) {
+        console.error('[semana.js] Erro ao raspar semana:', erro.message || erro);
         await browser.close();
     }
 }
