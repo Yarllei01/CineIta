@@ -135,7 +135,16 @@ function configurarBotaoCompartilhar(emCartaz, dataAtiva) {
     
     btn.onclick = function() {
         const filmes = emCartaz[dataAtiva];
-        let texto = "*Em cartaz (" + dataAtiva + ") em Itabaiana:*\n\n";
+        const infoData = formatarDataParaBotao(dataAtiva);
+        
+        // Verificar se é hoje
+        const agora = new Date();
+        const fusoBrasilia = new Date(agora.getTime() - (3 * 60 * 60 * 1000));
+        const hojeStr = fusoBrasilia.getUTCDate().toString().padStart(2, '0') + '/' + (fusoBrasilia.getUTCMonth() + 1).toString().padStart(2, '0');
+        
+        const nomeDia = (dataAtiva === hojeStr) ? 'HOJE' : infoData.semana;
+        
+        let texto = "*Em cartaz " + nomeDia + "(" + dataAtiva + ") em Itabaiana:*\n\n";
         
         for (let i = 0; i < filmes.length; i++) {
             const f = filmes[i];
